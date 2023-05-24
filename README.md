@@ -1,5 +1,6 @@
 ## INTRODUCTION
 ![Alt Text]()
+
 The task in this github repository is an SQL data cleaning task of less than 150 dataset.
 The data was later visualized using Tableau.
 
@@ -13,5 +14,14 @@ _NB: This is just a dummy data used from the internet which I used to show SQL d
 ## SKILLS APPLIED
 * Data cleaning, Data Manipulation, and use of data definition language (DDL) with SQL
 * Visualization with Tableau.
+
+## POSSIBLE STAKEHOLDERS
+* Institution Owners
+* Accounting department
+* Vice Chancellors, Rectors etc.
+
+## The Task
+
+### Previewing the Dataset
 
 
