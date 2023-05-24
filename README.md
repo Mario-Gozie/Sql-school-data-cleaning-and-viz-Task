@@ -60,3 +60,28 @@ The first (left) image shows that the null columns have been successfully delete
 ![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(306).png')
 
 The first image from the left shows that Columns were renamed successfully while the next one shows the new names have been attached.
+
+### Deleting the First 3 Rows
+
+`delete from Admission_list
+where Name = 'Name' or Name is Null;`
+
+
+`select * from Admission_list`
+
+
+
+
+![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(308).png')
+
+![Alt Text]('')
+
+
+### Removing Prospective Students that didn't pay fees
+
+`select * from Admission_list
+where Amount_paid is null;`
+
+![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(316).png')
+
+I removed these individuals because one who didn't pay Admission fee shouldn't on Admission list.
