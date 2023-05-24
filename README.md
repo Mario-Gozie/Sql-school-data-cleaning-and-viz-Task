@@ -82,6 +82,28 @@ where Name = 'Name' or Name is Null;`
 `select * from Admission_list
 where Amount_paid is null;`
 
+`select * from Admission_list;`
+
 ![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(316).png')
 
+![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(317).png')
+
+![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(318).png')
+
+
 I removed these individuals because one who didn't pay Admission fee shouldn't on Admission list.
+I now have a table without NULL Amount.
+
+
+### Deleting duplicate of all columns
+
+
+ 
+
+
+ `select Name, Email, Course, Registeration_Date, Amount_paid, count(*) as agg_Number
+ from Admission_list
+group by Name, Email, Course, Registeration_Date, Amount_paid
+having count(*) >1;`
+
+![Alt Text]('')
