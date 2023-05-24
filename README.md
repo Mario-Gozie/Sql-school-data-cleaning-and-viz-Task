@@ -56,6 +56,7 @@ The first (left) image shows that the null columns have been successfully delete
 
 ![Alt Text]('Images/Screenshot (305).png')
 
+
 ![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(306).png')
 
 The first image from the left shows that Columns were renamed successfully while the next one shows the new names have been attached.
