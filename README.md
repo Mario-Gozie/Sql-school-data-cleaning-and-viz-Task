@@ -26,21 +26,21 @@ _NB: This is just a dummy data used from the internet which I used to show SQL d
 
 `select * from Admission_list`
 
-![Alt Text]('Images/Screenshot (301).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(301).png)
 
-![ALt Text]('Images/Screenshot (302).png')
+![ALt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(302).png)
 
 Here, it is obvious that the column names are not right and they can be found in the third row. There are two null columns before the main column and a lot of them at the end.
 
-### Dropping all null columns
+### Dropping all only null columns
 `Alter Table Admission_list
 Drop column F1,F2, F8, F9, F10, F11, F12, F13, F14, F15, F16, F17, F18, F19;`
 
 `select * from Admission_list;`
 
-![Alt Text]('Images/Screenshot (303).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(303).png)
 
-![Alt Text]('Images/Screenshot (304).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(304).png)
 
 The first (left) image shows that the null columns have been successfully deleted. While the second (right) shows the table in a neater form
 
@@ -54,10 +54,10 @@ The first (left) image shows that the null columns have been successfully delete
 
 `select * from Admission_list;`
 
-![Alt Text]('Images/Screenshot (305).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(305).png)
 
 
-![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(306).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(306).png)
 
 The first image from the left shows that Columns were renamed successfully while the next one shows the new names have been attached.
 
@@ -72,23 +72,28 @@ where Name = 'Name' or Name is Null;`
 
 
 
-![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(308).png')
-
-![Alt Text]('')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(308).png)
 
 
-### Removing Prospective Students that didn't pay fees
+
+
+### Viewing for Students that didn't Pay School Fees
 
 `select * from Admission_list
 where Amount_paid is null;`
 
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(316).png)
+
+### Removing Prospective Students that didn't pay fees
+
+`delete from Admission_list
+where Amount_paid is null;`
+
 `select * from Admission_list;`
 
-![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(316).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(317).png)
 
-![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(317).png')
-
-![Alt Text]('https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(318).png')
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(318).png)
 
 
 I removed these individuals because one who didn't pay Admission fee shouldn't on Admission list.
