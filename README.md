@@ -100,15 +100,60 @@ I removed these individuals because one who didn't pay Admission fee shouldn't o
 I now have a table without NULL Amount.
 
 
-### Deleting duplicate of all columns
+###  Deleting duplicate of all columns
 
+`with Row_num_val as (select Name, Email, Course, Registeration_Date, Amount_paid,
+ROW_NUMBER() over(partition by Name, Email, Course, Registeration_Date, Amount_paid 
+order by Name, Amount_paid) as row_num
+from Admission_list),
 
- 
+complete_row_duplicate as (select Name, Email, Amount_paid, Registeration_Date, row_num,
+ count(*) over(partition by Name, Email, Amount_paid, Registeration_Date
+  order by Name,  Amount_paid)
+  as counts from Row_num_val)
 
+  
+  delete from complete_row_duplicate
+  where row_num > 1;`
+  
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(320).png)
+
+### Viewing to check if the deleted rows are gone
 
  `select Name, Email, Course, Registeration_Date, Amount_paid, count(*) as agg_Number
  from Admission_list
 group by Name, Email, Course, Registeration_Date, Amount_paid
 having count(*) >1;`
 
-![Alt Text]('')
+
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(321).png)
+
+### The Total School Fees for the Session is 500 Dollars. Some people made part payment earlier and later completed. which made their names appear twice. its time to fish them out and remove them.
+
+  #### checking how many these individuals are
+
+  `go
+ with Part_and_full_pay as(select Name, Email, Course,Registeration_Date,
+  Amount_paid, ROW_NUMBER() over(partition by Email, Course
+   order by Name, Email,Amount_paid desc) as row_num
+   from Admission_list)
+
+  delete from Part_and_full_pay
+  where row_num = 2;`
+  
+  ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(323).png)
+  
+  #### Removing their part payment details
+  
+   go
+ with Part_and_full_pay as(select Name, Email, Course,Registeration_Date,
+  Amount_paid, ROW_NUMBER() over(partition by Email, Course
+   order by Name, Email,Amount_paid desc) as row_num
+   from Admission_list)
+
+  delete from Part_and_full_pay
+  where row_num = 2;
+  
+  ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(325).png)
+  
+  ### 
