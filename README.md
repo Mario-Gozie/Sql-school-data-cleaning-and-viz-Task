@@ -156,4 +156,88 @@ having count(*) >1;`
   
   ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(325).png)
   
-  ### 
+  #### Confirming Removal of the duplicated names
+  
+  `select * from Admission_list`
+  ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(326).png)
+  
+  ### There are some rows in where the coursce column has space and not null
+  
+  #### viewing the table to see any of such rows
+  
+  `select * from Admission_list`
+  
+  ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(327).png)
+  
+  #### Replacing them with the word "Unspecified"
+  ` select * from Admission_list
+ where TRIM(Course) = '';`
+ 
+ `Update Admission_list
+set Course = 'Unspecified'
+where Trim(course) = '';`
+
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(328).png)
+
+#### Viewing the table to see if "Unspecified" has replaced the spaces
+
+`select * from Admission_list`
+
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(329).png)
+
+### The Date column is in string format, I had to convert it to the conventional date format
+
+ `select * from INFORMATION_SCHEMA.COLUMNS
+ where TABLE_NAME = 'Admission_list';`
+
+ `update Admission_list
+ set Registeration_Date = PARSE(Registeration_Date as date)`
+
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(331).png)
+
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(332).png)
+
+### After convertion, it remianed in Nvarchar format. I had to convert to date to Make Analysis Easy.
+
+` Alter Table Admission_list
+ alter column Registeration_Date date;`
+ 
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(335).png)
+
+![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(336).png)
+
+### I had to Update the Null date value to a unique day so I used 25th December, since no one paid on that day, it will be easy to identify people with such registeration day as people that do not have registeration day initially. This will make anlysis easy and the data look better.
+
+`Update Admission_list
+ set Registeration_Date = '2022-12-25'
+ where Registeration_Date is null;`
+
+ 
+ `select * from Admission_list;`
+ 
+ ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(333).png)
+ 
+ ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(334).png)
+ 
+ ### Creating and updating Payment Status column 
+ 
+  `Alter Table Admission_list
+ Add Payment_Status varchar(20) NOT NULL Default 'payment';`
+ 
+ `Update Admission_list
+ set Payment_Status = case when Amount_paid = 500 then 'Full Payment'
+ else 'Part Payment'
+ end;`
+ 
+ ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(337).png)
+ 
+ ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(339).png)
+ 
+ ### Now we have a clean dataset
+ 
+ `select * from Admission_list`
+ 
+ ![Alt Text](https://github.com/Mario-Gozie/Sql-school-data-cleaning-and-viz-Task/blob/main/Images/Screenshot%20(338).png)
+ 
+ 
+ 
